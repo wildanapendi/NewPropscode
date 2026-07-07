@@ -1,0 +1,110 @@
+{
+  "navbar": {
+    "home": "Home",
+    "services": "Services",
+    "portfolio": "Portfolio",
+    "company": "Company",
+    "blog": "Blog",
+    "team": "Team",
+    "login": "Login",
+    "dashboard": "Dashboard",
+    "logout": "Logout"
+  },
+  "hero": {
+    "badge": "Code Your Future",
+    "title_part1": "Build Your Dream",
+    "title_highlight": "Digital Products",
+    "title_part2": "With Us",
+    "subtitle": "We are a team of professional developers ready to turn your brilliant ideas into reliable websites, mobile apps, and custom software.",
+    "btn_start": "Start Project",
+    "btn_portfolio": "View Portfolio"
+  },
+  "stats": {
+    "projects": "Completed Projects",
+    "clients": "Happy Clients",
+    "experience": "Years Experience",
+    "team": "Professional Team"
+  },
+  "services": {
+    "title1": "Our",
+    "title2": "Services",
+    "subtitle": "Complete digital solutions for your business needs",
+    "btn_all": "View All Services",
+    "start_from": "Start from",
+    "items": {
+      "web": { "name": "Website Development", "desc": "Professional website development with modern and responsive technologies." },
+      "mobile": { "name": "Mobile App Development", "desc": "Cross-platform mobile application development for iOS and Android." },
+      "uiux": { "name": "UI/UX Design", "desc": "Intuitive and modern user interface design." },
+      "custom": { "name": "Custom Software", "desc": "Custom software development tailored to your business needs." }
+    }
+  },
+  "portfolio": {
+    "title1": "Best",
+    "title2": "Portfolio",
+    "subtitle": "Some of the best projects we have worked on",
+    "btn_all": "View All Portfolio",
+    "items": {
+      "p1": { "category": "Web App", "desc": "Modern e-commerce platform with full features." },
+      "p2": { "category": "Mobile App", "desc": "Health tracking app with AI features." },
+      "p3": { "category": "Dashboard", "desc": "Analytics dashboard for enterprise." }
+    }
+  },
+  "testimonials": {
+    "title1": "Client",
+    "title2": "Testimonials",
+    "subtitle": "What our clients say about our services",
+    "items": {
+      "t1": "Propscode helped us build an amazing e-commerce platform. The results exceeded expectations!",
+      "t2": "A highly professional and responsive team. Our website is now much more modern and fast.",
+      "t3": "The mobile app created is very user-friendly. Our users increased by 200% since launch."
+    }
+  },
+  "cta": {
+    "title": "Ready to Start Your Project?",
+    "subtitle": "Contact us now and get a free consultation for your digital project.",
+    "btn": "Start Now"
+  },
+  "servicesPage": {
+    "title1": "Our",
+    "title2": "Services",
+    "subtitle": "Choose the services that fit your business needs. We are ready to help bring your ideas to life.",
+    "keyFeatures": "Key Features:"
+  },
+  "portfolioPage": {
+    "title1": "Our Best",
+    "title2": "Work",
+    "subtitle": "Explore the various digital projects we have completed with maximum results.",
+    "categories": {
+      "Semua": "All",
+      "Web App": "Web App",
+      "Mobile App": "Mobile App",
+      "Dashboard": "Dashboard",
+      "Landing Page": "Landing Page"
+    }
+  },
+  "blogPage": {
+    "title1": "Blog &",
+    "title2": "Articles",
+    "subtitle": "A collection of insights, tutorials, and the latest news from Propscode.",
+    "search": "Search articles...",
+    "empty": "No articles found",
+    "empty_desc": "Try using different keywords.",
+    "categories": {
+      "Semua": "All",
+      "Teknologi": "Technology",
+      "Desain": "Design",
+      "Tutorial": "Tutorial",
+      "Bisnis": "Business"
+    },
+    "items": {
+      "b1": {
+        "title": "Web Development Trends in 2026",
+        "excerpt": "Discussing the latest technologies dominating the web industry..."
+      },
+      "b2": {
+        "title": "The Importance of UI/UX for Startups",
+        "excerpt": "Good design is not just about aesthetics, but also function..."
+      }
+    }
+  }
+}

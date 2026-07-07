@@ -1,0 +1,214 @@
+.services-page {
+  padding: 4rem 0 8rem;
+  width: 100%;
+  min-height: 100vh;
+  position: relative;
+}
+
+.services-page::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  --color: rgba(212, 124, 80, 0.05);
+  background-color: var(--bg-primary);
+  background-image: linear-gradient(
+      0deg,
+      transparent 24%,
+      var(--color) 25%,
+      var(--color) 26%,
+      transparent 27%,
+      transparent 74%,
+      var(--color) 75%,
+      var(--color) 76%,
+      transparent 77%,
+      transparent
+    ),
+    linear-gradient(
+      90deg,
+      transparent 24%,
+      var(--color) 25%,
+      var(--color) 26%,
+      transparent 27%,
+      transparent 74%,
+      var(--color) 75%,
+      var(--color) 76%,
+      transparent 77%,
+      transparent
+    );
+  background-size: 55px 55px;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.services-container {
+  max-width: 1500px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  position: relative;
+}
+
+.services-showcase {
+  display: flex;
+  flex-direction: column;
+  gap: 8rem;
+  margin-top: 5rem;
+}
+
+.service-showcase-row {
+  display: flex;
+  align-items: center;
+  gap: 6rem;
+}
+
+.service-showcase-row.row-reverse {
+  flex-direction: row-reverse;
+}
+
+.service-showcase-image {
+  flex: 1;
+  position: relative;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  aspect-ratio: 4/3;
+  padding: 0;
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-lg);
+}
+
+.service-showcase-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.7s ease;
+}
+
+.service-showcase-row:hover .service-showcase-image img {
+  transform: scale(1.05);
+}
+
+.service-icon-overlay {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background: var(--bg-primary);
+  padding: 1.5rem;
+  border-top-left-radius: var(--radius-xl);
+  font-size: 2.5rem;
+  color: var(--accent-primary);
+  border-top: 1px solid var(--border-color);
+  border-left: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.service-showcase-row.row-reverse .service-icon-overlay {
+  right: auto;
+  left: 0;
+  border-left: none;
+  border-right: 1px solid var(--border-color);
+  border-top-left-radius: 0;
+  border-top-right-radius: var(--radius-xl);
+}
+
+.service-showcase-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.service-showcase-content h2 {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+}
+
+.service-showcase-content .service-desc {
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+.service-showcase-content .service-price-tag {
+  display: inline-block;
+  background: rgba(212, 124, 80, 0.1); /* transparent accent */
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(212, 124, 80, 0.2);
+  width: fit-content;
+  font-weight: 500;
+  color: var(--text-muted);
+}
+
+.service-showcase-content .service-price-tag span {
+  font-size: 1.25rem;
+  margin-left: 0.5rem;
+  font-weight: 700;
+}
+
+.service-showcase-content .service-features {
+  margin-top: 1rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border-color);
+}
+
+.service-showcase-content .service-features h4 {
+  margin-bottom: 1.25rem;
+  color: var(--text-primary);
+  font-size: 1.1rem;
+}
+
+.service-showcase-content .service-features ul {
+  list-style: none;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.service-showcase-content .service-features li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+
+.check-icon {
+  color: var(--success);
+  flex-shrink: 0;
+  margin-top: 0.15rem;
+}
+
+@media (max-width: 992px) {
+  .services-showcase {
+    gap: 5rem;
+  }
+  
+  .service-showcase-row,
+  .service-showcase-row.row-reverse {
+    flex-direction: column;
+    gap: 2.5rem;
+  }
+  
+  .service-showcase-image {
+    width: 100%;
+    aspect-ratio: 16/9;
+  }
+  
+  .service-showcase-content h2 {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .service-showcase-content .service-features ul {
+    grid-template-columns: 1fr;
+  }
+  
+  .service-showcase-image {
+    aspect-ratio: 4/3;
+  }
+}

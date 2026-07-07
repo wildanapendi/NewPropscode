@@ -1,0 +1,110 @@
+{
+  "navbar": {
+    "home": "Home",
+    "services": "Layanan",
+    "portfolio": "Portofolio",
+    "company": "Perusahaan",
+    "blog": "Blog",
+    "team": "Tim",
+    "login": "Masuk",
+    "dashboard": "Dashboard",
+    "logout": "Keluar"
+  },
+  "hero": {
+    "badge": "Code Your Future",
+    "title_part1": "Bangun Produk Digital",
+    "title_highlight": "Impian Anda",
+    "title_part2": "Bersama Kami",
+    "subtitle": "Kami adalah tim developer profesional yang siap mengubah ide brilian Anda menjadi website, aplikasi mobile, dan software custom yang handal.",
+    "btn_start": "Mulai Proyek",
+    "btn_portfolio": "Lihat Portofolio"
+  },
+  "stats": {
+    "projects": "Proyek Selesai",
+    "clients": "Klien Puas",
+    "experience": "Tahun Pengalaman",
+    "team": "Tim Profesional"
+  },
+  "services": {
+    "title1": "Layanan",
+    "title2": "Kami",
+    "subtitle": "Solusi digital lengkap untuk kebutuhan bisnis Anda",
+    "btn_all": "Lihat Semua Layanan",
+    "start_from": "Mulai dari",
+    "items": {
+      "web": { "name": "Website Development", "desc": "Pembuatan website profesional dengan teknologi modern dan responsif." },
+      "mobile": { "name": "Mobile App Development", "desc": "Pengembangan aplikasi mobile cross-platform untuk iOS dan Android." },
+      "uiux": { "name": "UI/UX Design", "desc": "Desain antarmuka pengguna yang intuitif dan modern." },
+      "custom": { "name": "Custom Software", "desc": "Pengembangan software khusus sesuai kebutuhan bisnis Anda." }
+    }
+  },
+  "portfolio": {
+    "title1": "Portofolio",
+    "title2": "Terbaik",
+    "subtitle": "Beberapa proyek terbaik yang telah kami kerjakan",
+    "btn_all": "Lihat Semua Portofolio",
+    "items": {
+      "p1": { "category": "Web App", "desc": "Platform e-commerce modern dengan fitur lengkap." },
+      "p2": { "category": "Mobile App", "desc": "Aplikasi pelacak kesehatan dengan fitur AI." },
+      "p3": { "category": "Dashboard", "desc": "Dashboard analytics untuk perusahaan." }
+    }
+  },
+  "testimonials": {
+    "title1": "Kata",
+    "title2": "Klien",
+    "subtitle": "Apa yang klien kami katakan tentang layanan kami",
+    "items": {
+      "t1": "Propscode membantu kami membangun platform e-commerce yang luar biasa. Hasilnya melampaui ekspektasi!",
+      "t2": "Tim yang sangat profesional dan responsif. Website kami sekarang jauh lebih modern dan cepat.",
+      "t3": "Aplikasi mobile yang dibuat sangat user-friendly. Pengguna kami meningkat 200% sejak launch."
+    }
+  },
+  "cta": {
+    "title": "Siap Memulai Proyek Anda?",
+    "subtitle": "Hubungi kami sekarang dan dapatkan konsultasi gratis untuk proyek digital Anda.",
+    "btn": "Mulai Sekarang"
+  },
+  "servicesPage": {
+    "title1": "Layanan",
+    "title2": "Kami",
+    "subtitle": "Pilih layanan yang sesuai dengan kebutuhan bisnis Anda. Kami siap membantu mewujudkan ide Anda.",
+    "keyFeatures": "Fitur Utama:"
+  },
+  "portfolioPage": {
+    "title1": "Karya",
+    "title2": "Terbaik Kami",
+    "subtitle": "Jelajahi berbagai proyek digital yang telah kami selesaikan dengan hasil maksimal.",
+    "categories": {
+      "Semua": "Semua",
+      "Web App": "Web App",
+      "Mobile App": "Mobile App",
+      "Dashboard": "Dashboard",
+      "Landing Page": "Landing Page"
+    }
+  },
+  "blogPage": {
+    "title1": "Blog &",
+    "title2": "Artikel",
+    "subtitle": "Kumpulan wawasan, tutorial, dan kabar terbaru dari Propscode.",
+    "search": "Cari artikel...",
+    "empty": "Tidak ada artikel ditemukan",
+    "empty_desc": "Coba gunakan kata kunci yang berbeda.",
+    "categories": {
+      "Semua": "Semua",
+      "Teknologi": "Teknologi",
+      "Desain": "Desain",
+      "Tutorial": "Tutorial",
+      "Bisnis": "Bisnis"
+    },
+    "items": {
+      "b1": {
+        "title": "Tren Web Development Tahun 2026",
+        "excerpt": "Membahas teknologi terbaru yang mendominasi industri web..."
+      },
+      "b2": {
+        "title": "Pentingnya UI/UX untuk Startup",
+        "excerpt": "Desain yang baik bukan hanya tentang estetika, tapi juga fungsi..."
+      }
+    }
+  }
+}

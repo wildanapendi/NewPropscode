@@ -1,0 +1,128 @@
+.blog-detail-page {
+  padding: 2rem 0 5rem;
+}
+
+.blog-detail-container {
+  max-width: 800px;
+}
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  margin-bottom: 2rem;
+  transition: color var(--transition-fast);
+}
+
+.back-link:hover {
+  color: var(--accent-primary);
+}
+
+.blog-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.blog-header .badge {
+  margin-bottom: 1rem;
+}
+
+.blog-detail-title {
+  font-size: clamp(2rem, 4vw, 3rem);
+  line-height: 1.2;
+  margin-bottom: 1.5rem;
+}
+
+.blog-detail-meta {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+}
+
+.blog-detail-meta span {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.blog-main-image {
+  width: 100%;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  margin-bottom: 3rem;
+  border: 1px solid var(--border-color);
+}
+
+.blog-main-image img {
+  width: 100%;
+  max-height: 450px;
+  object-fit: cover;
+}
+
+.blog-rich-content {
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: var(--text-secondary);
+}
+
+.blog-rich-content h2, .blog-rich-content h3 {
+  color: var(--text-primary);
+  margin: 2.5rem 0 1rem;
+}
+
+.blog-rich-content p {
+  margin-bottom: 1.5rem;
+}
+
+.blog-rich-content ul, .blog-rich-content ol {
+  margin-bottom: 1.5rem;
+  padding-left: 1.5rem;
+}
+
+.blog-rich-content li {
+  margin-bottom: 0.5rem;
+}
+
+.blog-rich-content blockquote {
+  border-left: 4px solid var(--accent-primary);
+  padding-left: 1.5rem;
+  margin: 2rem 0;
+  font-style: italic;
+  color: var(--text-primary);
+  background: var(--bg-tertiary);
+  padding: 1.5rem;
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+}
+
+.blog-rich-content img {
+  border-radius: var(--radius-md);
+  margin: 2rem 0;
+}
+
+.blog-tags {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 4rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border-color);
+  color: var(--text-muted);
+}
+
+.tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.tag {
+  background: var(--bg-tertiary);
+  padding: 0.3rem 0.8rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}

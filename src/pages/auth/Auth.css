@@ -1,0 +1,409 @@
+.auth-page {
+  position: relative;
+  min-height: 100vh;
+  margin-top: -70px;
+  margin-bottom: -4rem; /* Tarik background ke bawah untuk menutupi margin-top footer */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: calc(4rem + 70px) 1rem calc(4rem + 4rem); /* Tambah padding bawah agar konten tetap di tengah */
+  background-color: var(--bg-primary);
+  
+  /* Glowing Orbs (Top Level) with fade out at the bottom */
+  background-image: 
+    linear-gradient(to bottom, transparent 80%, var(--bg-primary) 100%),
+    radial-gradient(circle at top right, rgba(99, 102, 241, 0.15), transparent 50%),
+    radial-gradient(circle at bottom left, rgba(139, 92, 246, 0.15), transparent 50%);
+}
+
+/* Geometric Pattern Overlay - Disederhanakan untuk mencegah noise 'titik putih' */
+.auth-page::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  
+  /* Subtle dot pattern instead of complex geometry */
+  background-image: radial-gradient(var(--text-primary) 1px, transparent 1px);
+  background-size: 24px 24px;
+  opacity: 0.05; 
+  
+  /* Smooth fade out at the bottom to blend with footer */
+  mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+}
+
+.auth-wrapper {
+  position: relative;
+  z-index: 1; /* Keep the form above the background pattern */
+}
+
+.auth-container {
+  width: 100%;
+  max-width: 450px;
+}
+
+.auth-card {
+  padding: 2.5rem;
+  border-radius: var(--radius-xl);
+  position: relative;
+  overflow: hidden;
+}
+
+.auth-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--accent-gradient);
+}
+
+.auth-header {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.auth-header h2 {
+  font-size: 1.75rem;
+  margin-bottom: 0.5rem;
+}
+
+.auth-header p {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+}
+
+.input-with-icon {
+  position: relative;
+}
+
+.input-icon {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-muted);
+  font-size: 1.1rem;
+}
+
+.input-with-icon .form-control {
+  padding-left: 2.75rem;
+}
+
+.forgot-password {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+.forgot-password:hover {
+  color: var(--accent-primary);
+  text-decoration: underline;
+}
+
+.w-full {
+  width: 100%;
+  padding-top: 0.875rem;
+  padding-bottom: 0.875rem;
+}
+
+.auth-footer {
+  margin-top: 2rem;
+  text-align: center;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border-color);
+}
+
+.auth-footer p {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+}
+
+.auth-footer a {
+  color: var(--accent-primary);
+  font-weight: 500;
+}
+
+.auth-footer a:hover {
+  text-decoration: underline;
+}
+
+/* For register page making it wider */
+:has(.grid-2) .auth-container {
+  max-width: 600px;
+}
+
+@media (max-width: 640px) {
+  .auth-card {
+    padding: 2rem 1.5rem;
+  }
+  .grid-2 {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* Auth Flip Card Styles (Neo-Brutalist) */
+.auth-wrapper {
+  --input-focus: var(--accent-primary);
+  --font-color: var(--text-primary);
+  --font-color-sub: var(--text-secondary);
+  --bg-color: var(--bg-primary); /* Hitam */
+  --bg-color-alt: var(--bg-secondary);
+  --main-color: var(--accent-primary); /* Oranye Depth */
+  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+  width: 100%;
+}
+
+/* Switch Styles */
+.auth-switch-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  width: 50px;
+  height: 20px;
+  margin-bottom: 25px; /* Sedikit ditambah dari 20px untuk jarak visual yang lebih baik */
+}
+
+.auth-switch {
+  box-sizing: border-box;
+  border-radius: 5px;
+  border: 2px solid var(--main-color);
+  box-shadow: 4px 4px var(--main-color);
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--bg-color);
+  transition: 0.3s;
+}
+
+.auth-switch::before {
+  box-sizing: border-box;
+  position: absolute;
+  content: "";
+  height: 20px;
+  width: 20px;
+  border: 2px solid var(--main-color);
+  border-radius: 5px;
+  left: -2px;
+  bottom: -2px;
+  background-color: var(--bg-color);
+  box-shadow: 0 3px 0 var(--main-color);
+  transition: 0.3s;
+}
+
+.auth-switch.is-flipped {
+  background-color: var(--input-focus);
+}
+
+.auth-switch.is-flipped::before {
+  transform: translateX(30px);
+}
+
+.card-side-label {
+  position: absolute;
+  top: -2px; /* Menyelaraskan teks secara vertikal dengan switch */
+  width: 100px;
+  color: var(--font-color);
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: color 0.2s ease, opacity 0.2s ease;
+}
+
+.card-side-label:hover {
+  color: var(--main-color);
+  opacity: 0.9;
+}
+
+.card-side-label.login {
+  right: 70px; /* Jarak 20px dari tepi kiri switch track (switch: 0px s.d. 50px) */
+  text-align: right;
+  text-decoration: underline;
+}
+
+.card-side-label.signup {
+  left: 70px; /* Jarak 20px dari tepi kanan switch track */
+  text-align: left;
+  text-decoration: none;
+}
+
+.auth-switch-container.is-flipped .card-side-label.login {
+  text-decoration: none;
+}
+
+.auth-switch-container.is-flipped .card-side-label.signup {
+  text-decoration: underline;
+}
+
+/* Card Styles */
+.flip-card__inner {
+  width: 380px;
+  height: 420px; /* Ditambah dari 400px agar layout tidak sesak dan button naik */
+  position: relative;
+  background-color: transparent;
+  perspective: 1000px;
+  text-align: center;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1), width 0.6s cubic-bezier(0.4, 0, 0.2, 1), height 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-style: preserve-3d;
+}
+
+.flip-card__inner.is-flipped {
+  transform: rotateY(180deg);
+  width: 650px;
+  height: 550px; /* Ditambah dari 520px agar layout tidak sesak dan button naik */
+}
+
+.flip-card__front, .flip-card__back {
+  padding: 30px 40px; /* Diubah dari 20px ke 30px untuk breathing room yang premium */
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  background: var(--bg-color);
+  gap: 20px;
+  border-radius: 5px;
+  border: 2px solid var(--main-color);
+  box-shadow: 6px 6px var(--main-color);
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.flip-card__inner.is-flipped .flip-card__front {
+  box-shadow: none;
+}
+
+.flip-card__back {
+  transform: rotateY(180deg);
+}
+
+.flip-card__form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px; /* Dikurangi sedikit dari 25px untuk efisiensi ruang */
+  width: 100%;
+}
+
+.flip-card__form .form-group {
+  width: 100%;
+  max-width: 320px;
+  text-align: left;
+}
+
+.flip-card__form label {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--font-color);
+  margin-bottom: 6px;
+}
+
+.label-optional {
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--font-color-sub);
+}
+
+.flip-card__grid .form-group {
+  max-width: none;
+}
+
+
+.flip-card__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px 30px; /* Dikurangi baris gap dari 25px ke 20px */
+  width: 100%;
+}
+
+@media (max-width: 640px) {
+  .flip-card__inner {
+    width: 100%;
+    max-width: 420px;
+    height: 440px; /* Disesuaikan untuk mobile default */
+  }
+  .flip-card__inner.is-flipped {
+    width: 100%;
+    height: 780px; /* Ditambah agar form 6 input ter-stack vertikal dengan lega */
+  }
+  .flip-card__grid {
+    grid-template-columns: 1fr;
+    gap: 15px; /* Lebih padat di mobile agar pas */
+  }
+  .flip-card__front, .flip-card__back {
+    padding: 25px 20px; /* Spacing atas-bawah yang pas di layar kecil */
+  }
+}
+
+.flip-card__title {
+  margin: 0 0 10px 0; /* Dikurangi dari 10px/20px karena sudah ada flex-gap */
+  font-size: 25px;
+  font-weight: 900;
+  text-align: center;
+  color: var(--font-color);
+}
+
+.flip-card__input {
+  width: 100%;
+  max-width: 320px;
+  height: 48px;
+  border-radius: 5px;
+  border: 2px solid var(--main-color);
+  background-color: var(--bg-color);
+  box-shadow: 4px 4px var(--main-color);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--font-color);
+  padding: 5px 15px;
+  outline: none;
+}
+
+.flip-card__grid .flip-card__input {
+  max-width: none;
+}
+
+.flip-card__input::placeholder {
+  color: var(--font-color-sub);
+  opacity: 0.8;
+}
+
+.flip-card__input:focus {
+  border: 2px solid var(--input-focus);
+}
+
+.flip-card__btn {
+  margin: 15px 0 0 0; /* Diturunkan margin bottom menjadi 0 untuk mencegah menekan padding bawah */
+  width: 160px;
+  height: 48px;
+  border-radius: 5px;
+  border: 2px solid var(--main-color);
+  background-color: var(--bg-color);
+  box-shadow: 4px 4px var(--main-color);
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--font-color);
+  cursor: pointer;
+  transition: transform 0.1s, box-shadow 0.1s, color 0.2s ease, background-color 0.2s ease;
+}
+
+.flip-card__btn:active {
+  box-shadow: 0px 0px var(--main-color);
+  transform: translate(3px, 3px);
+}

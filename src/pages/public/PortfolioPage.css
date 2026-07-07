@@ -1,0 +1,164 @@
+.portfolio-page {
+  padding: calc(4rem + 70px) 0 8rem;
+  min-height: 100vh;
+  margin-top: -70px;
+  margin-bottom: -4rem;
+  /* Cover footer margin gap */
+}
+
+.portfolio-filters {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 4rem;
+}
+
+.filter-btn {
+  padding: 0.6rem 1.5rem;
+  background: transparent;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-full);
+  color: var(--text-secondary);
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.filter-btn:hover {
+  background: var(--bg-tertiary);
+  color: var(--text-primary);
+}
+
+.filter-btn.active {
+  background: var(--accent-gradient);
+  color: white;
+  border: none;
+  box-shadow: var(--shadow-glow);
+}
+
+.portfolio-grid-page .portfolio-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.portfolio-links-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(10, 10, 15, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  opacity: 0;
+  transition: opacity var(--transition-base);
+}
+
+.portfolio-cover:hover .portfolio-links-overlay {
+  opacity: 1;
+}
+
+.portfolio-links-overlay a {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  background: var(--accent-primary);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  transform: translateY(20px);
+  transition: all var(--transition-base);
+}
+
+.portfolio-cover:hover .portfolio-links-overlay a {
+  transform: translateY(0);
+}
+
+.portfolio-links-overlay a:hover {
+  background: white;
+  color: var(--accent-primary);
+  transform: scale(1.1) !important;
+}
+
+.portfolio-grid-page .portfolio-info {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.portfolio-grid-page .portfolio-info p {
+  flex-grow: 1;
+}
+
+.portfolio-grid-page .portfolio-tech {
+  margin-top: 1rem;
+}
+
+
+/* Hexagon Overlay Pattern */
+.hexagon-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.04;
+  /* ADJUST THIS VALUE: 0.01 for very faint, 1.0 for solid */
+  background: radial-gradient(circle farthest-side at 0% 50%,
+      var(--bg-primary) 23.5%,
+      transparent 0) 21px 30px,
+    radial-gradient(circle farthest-side at 0% 50%,
+      var(--accent-primary) 24%,
+      transparent 0) 19px 30px,
+    linear-gradient(var(--bg-primary) 14%,
+      transparent 0,
+      transparent 85%,
+      var(--bg-primary) 0) 0 0,
+    linear-gradient(150deg,
+      var(--bg-primary) 24%,
+      var(--accent-primary) 0,
+      var(--accent-primary) 26%,
+      transparent 0,
+      transparent 74%,
+      var(--accent-primary) 0,
+      var(--accent-primary) 76%,
+      var(--bg-primary) 0) 0 0,
+    linear-gradient(30deg,
+      var(--bg-primary) 24%,
+      var(--accent-primary) 0,
+      var(--accent-primary) 26%,
+      transparent 0,
+      transparent 74%,
+      var(--accent-primary) 0,
+      var(--accent-primary) 76%,
+      var(--bg-primary) 0) 0 0,
+    linear-gradient(90deg, var(--accent-primary) 2%, var(--bg-primary) 0, var(--bg-primary) 98%, var(--accent-primary) 0%) 0 0 var(--bg-primary);
+  background-size: 40px 60px;
+  animation: hexScroll 30s linear infinite;
+}
+
+@keyframes hexScroll {
+  0% {
+    background-position:
+      21px 30px,
+      19px 30px,
+      0px 0px,
+      0px 0px,
+      0px 0px,
+      0px 0px;
+  }
+
+  100% {
+    background-position:
+      61px 90px,
+      59px 90px,
+      40px 60px,
+      40px 60px,
+      40px 60px,
+      40px 60px;
+  }
+}
