@@ -65,7 +65,7 @@ app.get("/api/health", (req, res) => {
 });
 
 // Error handling Jika tidak bisa
-app.use((err, req, res) => {
+app.use((err, req, res, _next) => {
     console.error("Server Error:", err);
     res.status(err.status || 500).json({
         success: false,
