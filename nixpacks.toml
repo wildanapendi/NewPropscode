@@ -1,0 +1,6 @@
+# Nixpacks Configuration for Propscode V2
+[providers]
+providers = ["node"]
+
+[variables]
+NIXPACKS_NODE_VERSION = "24"

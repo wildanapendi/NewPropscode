@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+const API_BASE_URL = import.meta.env.VITE_API_URL || '/api';
 
 const api = axios.create({
   baseURL: API_BASE_URL,
@@ -45,8 +45,11 @@ api.interceptors.response.use(
 export const getImageUrl = (path) => {
   if (!path) return null;
   if (path.startsWith('http')) return path;
-  const baseUrl = API_BASE_URL.replace('/api', '');
-  return `${baseUrl}${path.startsWith('/') ? path : `/${path}`}`;
+  // Jika API_BASE_URL adalah path relatif (/api), gunakan origin browser sebagai base
+  const baseOrigin = API_BASE_URL.startsWith('http')
+    ? API_BASE_URL.replace('/api', '')
+    : window.location.origin;
+  return `${baseOrigin}${path.startsWith('/') ? path : `/${path}`}`;
 };
 
 export default api;

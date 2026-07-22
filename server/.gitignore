@@ -8,3 +8,5 @@ node_modules/
 /playwright/.auth/
 propscode.sql
 schema.sql
+production.sql
+

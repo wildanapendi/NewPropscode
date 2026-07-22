@@ -3,6 +3,9 @@
   "private": true,
   "version": "1.0.0",
   "type": "module",
+  "engines": {
+    "node": "^20.19.0 || >=22.12.0"
+  },
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -11,7 +14,6 @@
     "clean": "node -e \"const fs = require('fs'); fs.rmSync('dist', { recursive: true, force: true }); fs.rmSync('node_modules/.vite', { recursive: true, force: true }); console.log('Cache bundler dan folder build frontend berhasil dibersihkan!');\""
   },
   "dependencies": {
-    "@playwright/test": "^1.61.0",
     "axios": "^1.16.1",
     "framer-motion": "^12.40.0",
     "i18next": "^26.2.0",
@@ -25,6 +27,7 @@
     "recharts": "^3.8.1"
   },
   "devDependencies": {
+    "@playwright/test": "^1.61.0",
     "@eslint/js": "^10.0.1",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",

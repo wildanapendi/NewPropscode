@@ -3,6 +3,18 @@ import react from '@vitejs/plugin-react'
 
 export default defineConfig({
   plugins: [react()],
+  server: {
+    port: 5173,
+    strictPort: false, // Jika 5173 terpakai, naik ke 5174 (jangan diblokir)
+    proxy: {
+      // Proxy /api ke backend — menghindari masalah CORS saat development
+      '/api': {
+        target: 'http://localhost:5000',
+        changeOrigin: true,
+        secure: false,
+      },
+    },
+  },
   build: {
     rollupOptions: {
       output: {
@@ -24,3 +36,4 @@ export default defineConfig({
     }
   }
 })
+

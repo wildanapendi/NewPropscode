@@ -1,230 +1,246 @@
 # Propscode V2
 
-Fullstack web application untuk manajemen layanan digital — dibangun dengan **React + Vite** (frontend) dan **Express.js + MySQL** (backend).
+Propscode V2 adalah platform manajemen layanan digital fullstack modern yang dirancang untuk mengelola alur kerja pemesanan proyek, showcase portofolio, publikasi artikel blog, serta manajemen tim secara terintegrasi. Platform ini menggunakan arsitektur terpisah (decoupled) berbasis React dan Vite pada sisi antarmuka, serta Express.js dan MySQL pada sisi backend API.
 
-## Tech Stack
+---
 
-| Layer     | Teknologi                                    |
-| --------- | -------------------------------------------- |
-| Frontend  | React 19, Vite 8, Framer Motion, React Icons |
-| Backend   | Express 5, Node.js (ESM)                     |
-| Database  | MySQL / MariaDB (via mysql2)                 |
-| Auth      | JWT (jsonwebtoken + bcryptjs)                |
-| Notifikasi| Telegram Bot API, n8n Webhook                |
-| i18n      | i18next + react-i18next                      |
+## Arsitektur & Teknologi
+
+### Frontend
+- **Framework & Build Tool**: React 19, Vite 8
+- **State & Routing**: React Router Dom 7, Context API (AuthContext)
+- **UI & Animasi**: Framer Motion, React Icons, Recharts, React Hot Toast
+- **Internasionalisasi**: i18next, react-i18next, i18next-browser-languagedetector
+- **HTTP Client**: Axios dengan request/response interceptors
+
+### Backend
+- **Runtime & Framework**: Node.js (ES Modules), Express.js 5
+- **Database Engine**: MySQL / MariaDB (Driver: mysql2 dengan Connection Pooling)
+- **Autentikasi & Keamanan**: JSON Web Token (JWT), Bcrypt.js, Helmet, HPP (HTTP Parameter Pollution Protection), Rate Limiter
+- **Notifikasi**: Telegram Bot API, n8n Webhook Integration
+- **Manajemen Berkas**: Multer untuk penanganan upload aset dan gambar
+
+---
 
 ## Fitur Utama
 
-- Autentikasi JWT (login/register) dengan role `admin` & `client`
-- Manajemen pesanan (order) dengan tracking status & assignment
-- Portfolio showcase
-- Blog management (draft/publish)
-- Team member management
-- Notifikasi real-time (in-app, Telegram, n8n webhook)
-- Support ticket system
-- File upload untuk order assets
-- Multi-bahasa (i18n)
+### 1. Sistem Autentikasi & Otorisasi
+- Multi-role access control (Admin dan Client)
+- Pengamanan endpoint API berbasis JWT (Bearer Token)
+- Enkripsi kata sandi menggunakan hashing Bcrypt
+- Manajemen profil pengguna dan pengaturan akun mandiri
+
+### 2. Manajemen Pesanan & Proyek (Order Management)
+- Formulir pemesanan multi-langkah (Multi-step order wizard)
+- Pelacakan status proyek secara berkala (Pending, Confirmed, In Progress, Testing, Done, Cancelled)
+- Manajemen aset proyek (Upload dokumen pendukung dan link eksternal)
+- Penugasan anggota tim internal ke proyek spesifik (Order Assignment)
+- Sistem catatan dan komunikasi internal per pesanan
+
+### 3. Dashboard Admin & Analitik
+- Ringkasan statistik performa bisnis (Total pesanan, klien aktif, statistik status)
+- Visualisasi grafik tren pesanan mingguan menggunakan Recharts
+- Manajemen katalog layanan (CRUD Layanan & Paket Harga)
+- Manajemen postingan blog (Draft & Published status)
+- Manajemen daftar portofolio dan showcase karya
+- Manajemen data anggota tim internal
+
+### 4. Notifikasi Real-time & Integrasi
+- Notifikasi in-app untuk pembaruan status pesanan dan pesan baru
+- Integrasi bot Telegram untuk notifikasi otomatis ke grup admin
+- Dukungan webhook n8n untuk otomasi alur kerja lanjutan
+
+### 5. Keamanan & Pemeliharaan
+- Fitur Maintenance Mode berbasis variabel lingkungan atau flag file (.maintenance)
+- Fitur token bypass (x-maintenance-bypass) untuk akses pengembang saat pemeliharaan
+- Perlindungan dari penjelajahan langsung API dari browser (apiProtect middleware)
 
 ---
 
-## Prerequisites
+## Persyaratan Sistem
 
-Pastikan tools berikut sudah terinstall:
+Pastikan perangkat lunak berikut sudah terpasang pada lingkungan pengembangan atau server Anda:
 
-- **Node.js** >= 18.x — [Download](https://nodejs.org/)
-- **MySQL** >= 8.0 atau **MariaDB** >= 10.4 — [Download MySQL](https://dev.mysql.com/downloads/) / [XAMPP](https://www.apachefriends.org/)
-- **npm** >= 9.x (sudah termasuk di Node.js)
+- **Node.js**: Versi 18.x atau yang lebih baru
+- **npm**: Versi 9.x atau yang lebih baru
+- **MySQL / MariaDB**: MySQL versi 8.0+ atau MariaDB versi 10.4+
 
 ---
 
-## Setup & Instalasi
+## Panduan Instalasi & Konfigurasi
 
-### 1. Clone Repository
+### 1. Klon Repositori
 
 ```bash
 git clone https://github.com/your-org/propscode-v2.git
 cd propscode-v2
 ```
 
-### 2. Konfigurasi Environment Variables
+### 2. Konfigurasi Variabel Lingkungan (.env)
+
+Buat file `.env` di folder akar project dengan menyalin template `.env.example`:
 
 ```bash
-# Salin file template environment
 cp .env.example .env
 ```
 
-Buka file `.env` dan sesuaikan nilai-nilainya. Berikut penjelasan setiap variabel:
+Berikut adalah daftar variabel lingkungan yang wajib dikonfigurasi:
 
-#### 🗄️ Database
+#### Database
+- `DB_HOST`: Host database MySQL (Default: `localhost`)
+- `DB_PORT`: Port database MySQL (Default: `3306`)
+- `DB_USER`: Username database (Default: `root`)
+- `DB_PASSWORD`: Password database (Kosongkan jika tanpa password)
+- `DB_NAME`: Nama database aplikasi (Default: `propscode_db`)
 
-| Variable      | Deskripsi                          | Default          | Wajib |
-| ------------- | ---------------------------------- | ---------------- | ----- |
-| `DB_HOST`     | Host database MySQL                | `localhost`      | ✅    |
-| `DB_PORT`     | Port database MySQL                | `3306`           | ✅    |
-| `DB_USER`     | Username database                  | `root`           | ✅    |
-| `DB_PASSWORD` | Password database                  | _(kosong)_       | ✅    |
-| `DB_NAME`     | Nama database                      | `propscode_db`   | ✅    |
+#### Keamanan JWT
+- `JWT_SECRET`: Kunci rahasia untuk enkripsi token JWT
+- `JWT_EXPIRES_IN`: Masa berlaku token (Default: `7d`)
 
-#### JWT Authentication
+#### Server Backend
+- `PORT`: Port backend API server (Default: `5000`)
+- `PORT_API_URL`: Base URL internal API (Default: `http://localhost:5000/api`)
 
-| Variable         | Deskripsi                                    | Default                    | Wajib |
-| ---------------- | -------------------------------------------- | -------------------------- | ----- |
-| `JWT_SECRET`     | Secret key untuk sign/verify JWT token       | `your_jwt_secret_key_here` | ✅    |
-| `JWT_EXPIRES_IN` | Durasi expired token (format: `7d`, `24h`)   | `7d`                       | ✅    |
+#### Server Frontend
+- `FRONTEND_URL`: URL frontend untuk otorisasi CORS (Default: `http://localhost:5173`)
+- `VITE_API_URL`: Path API frontend (Gunakan `/api` untuk menggunakan Vite Proxy)
 
-> **⚠️ Penting:** Generate JWT secret yang kuat untuk production:
-> ```bash
-> node -e "console.log(require('crypto').randomBytes(64).toString('hex'))"
-> ```
+#### Bot Telegram (Opsional)
+- `TELEGRAM_BOT_TOKEN`: Token bot dari @BotFather
+- `TELEGRAM_CHAT_ID`: ID chat atau grup penerima notifikasi
 
-#### 🖥️ Server
+#### Mode Pemeliharaan (Maintenance Mode)
+- `MAINTENANCE_MODE`: Set `true` untuk mengaktifkan pemeliharaan sistem
+- `MAINTENANCE_BYPASS_TOKEN`: Token rahasia HTTP Header (`x-maintenance-bypass`) untuk bypass pengembang
 
-| Variable        | Deskripsi                     | Default                          | Wajib |
-| --------------- | ----------------------------- | -------------------------------- | ----- |
-| `PORT`          | Port backend API server       | `5000`                           | ✅    |
-| `PORT_API_URL`  | Base URL API (internal ref)   | `http://localhost:5000/api`      | ✅    |
-| `FRONTEND_URL`  | URL frontend (untuk CORS)     | `http://localhost:5173`          | ✅    |
+---
 
-#### 🌐 Frontend (Vite)
+### 3. Inisialisasi Database
 
-| Variable        | Deskripsi                     | Default                          | Wajib |
-| --------------- | ----------------------------- | -------------------------------- | ----- |
-| `VITE_API_URL`  | URL API yang diakses frontend | `http://localhost:5000/api`      | ❌    |
-
-> **💡 Catatan:** Variabel dengan prefix `VITE_` otomatis tersedia di frontend melalui `import.meta.env.VITE_*`
-
-#### 📱 Telegram Bot _(Opsional)_
-
-| Variable             | Deskripsi                        | Cara Mendapatkan                          |
-| -------------------- | -------------------------------- | ----------------------------------------- |
-| `TELEGRAM_BOT_TOKEN` | Token bot dari @BotFather        | Buka @BotFather di Telegram → `/newbot`   |
-| `TELEGRAM_CHAT_ID`   | Chat ID grup Telegram            | Gunakan @RawDataBot atau API `getUpdates` |
-
-#### 🔗 n8n Webhook _(Opsional)_
-
-| Variable          | Deskripsi                    | Cara Mendapatkan                          |
-| ----------------- | ---------------------------- | ----------------------------------------- |
-| `N8N_WEBHOOK_URL` | URL webhook dari n8n         | Buat workflow di n8n → tambahkan node Webhook |
-
-### 3. Setup Database
+Jalankan skrip SQL yang telah disediakan pada folder `server/schema.sql` untuk membuat tabel dan memasukkan data awal:
 
 ```bash
-# Buat database baru di MySQL
-mysql -u root -p -e "CREATE DATABASE propscode_db CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;"
-
-# Import schema & data awal
+# Menggunakan MySQL Command Line
+mysql -u root -p -e "CREATE DATABASE propscode_db CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;"
 mysql -u root -p propscode_db < server/schema.sql
 ```
 
-> Atau jika menggunakan **phpMyAdmin**: buat database `propscode_db`, lalu import file `server/schema.sql` melalui tab "Import".
+Atau lakukan impor file `server/schema.sql` secara manual melalui phpMyAdmin, DBeaver, TablePlus, atau MySQL Workbench.
 
-### 4. Install Dependencies
+---
+
+### 4. Instalasi Dependency
+
+Instal dependensi untuk modul frontend dan backend:
 
 ```bash
-# Install dependencies frontend (root project)
+# Instal dependensi frontend (di root direktori)
 npm install
 
-# Install dependencies backend
+# Instal dependensi backend
 cd server
 npm install
 cd ..
 ```
 
-### 5. Jalankan Aplikasi
+---
 
-Buka **2 terminal** terpisah:
+## Menjalankan Aplikasi
 
-**Terminal 1 — Backend API Server:**
+Jalankan backend server dan frontend dev server pada dua terminal terpisah.
+
+### Terminal 1: Backend API Server
 ```bash
 cd server
 npm run dev
-# 🚀 Server berjalan di http://localhost:5000
 ```
+Server backend akan berjalan pada `http://localhost:5000`
 
-**Terminal 2 — Frontend Dev Server:**
+### Terminal 2: Frontend Client
 ```bash
 npm run dev
-# ⚡ Frontend berjalan di http://localhost:5173
 ```
-
-### 6. Akses Aplikasi
-
-| URL                             | Deskripsi           |
-| ------------------------------- | ------------------- |
-| `http://localhost:5173`         | Frontend (React)    |
-| `http://localhost:5000/api`     | Backend API         |
-| `http://localhost:5000/api/health` | Health check     |
-
-### Akun Default
-
-| Email                  | Password         | Role    |
-| ---------------------- | ---------------- | ------- |
-| `admin@propscode.com`  | _(lihat schema)_ | `admin` |
+Server frontend akan berjalan pada `http://localhost:5173`
 
 ---
 
-## Struktur Project
+## Kredensial Akun Pengujian
+
+Setelah skrip database diimpor, gunakan kredensial bawaan berikut untuk menguji sistem:
+
+| Peran | Email | Password | Hak Akses |
+| :--- | :--- | :--- | :--- |
+| **Admin** | `admin@propscode.com` | `admin123` | Akses penuh Dashboard Admin |
+| **Client** | `client@demo.com` | `client123` | Akses Dashboard Klien & Pemesanan |
+
+---
+
+## Struktur Direktori Project
 
 ```
 propscode-v2/
-├── .env.example          # Template environment variables (BACA INI)
-├── .env                  # Environment variables lokal (JANGAN commit!)
-├── index.html            # Entry point Vite
-├── package.json          # Dependencies frontend
-├── vite.config.js        # Konfigurasi Vite
-├── public/               # Static assets
-├── src/                  # Source code frontend (React)
-│   └── services/
-│       └── api.js        # Axios instance + interceptors
-├── server/               # Source code backend (Express)
-│   ├── index.js          # Entry point server
-│   ├── package.json      # Dependencies backend
-│   ├── schema.sql        # SQL schema + seed data
-│   ├── migrate.js        # Migration script
-│   ├── config/
-│   │   └── db.js         # MySQL connection pool
-│   ├── controllers/      # Route handlers
-│   ├── middleware/        # Auth middleware
-│   ├── routes/            # API route definitions
-│   ├── services/          # Telegram, webhook services
-│   └── uploads/           # Uploaded files (user assets)
+├── .env.example             # Template konfigurasi environment
+├── .env                     # Konfigurasi environment lokal (Diabaikan oleh git)
+├── index.html               # Entry point HTML Vite
+├── package.json             # Manifest dependensi frontend
+├── vite.config.js           # Konfigurasi bundler Vite dan proxy API
+├── public/                  # Aset statis publik
+├── src/                     # Source code frontend (React)
+│   ├── assets/              # Gambar dan gaya statis
+│   ├── components/          # Komponen UI reusable (Layout, Navbar, Sidebar)
+│   ├── context/             # React Context (AuthContext)
+│   ├── hooks/               # Custom React Hooks
+│   ├── locales/             # File translasi bahasa (i18n)
+│   ├── pages/               # Halaman aplikasi (Admin, Client, Public, Auth)
+│   └── services/            # Modul API client (Axios configuration)
+└── server/                  # Source code backend (Express.js)
+    ├── index.js             # Entry point Express server
+    ├── package.json         # Manifest dependensi backend
+    ├── schema.sql           # Skema database & data inisialisasi
+    ├── audit-login.js       # Skrip diagnosa & pengujian login
+    ├── config/              # Konfigurasi koneksi MySQL pool
+    ├── controllers/         # Handler logika bisnis per rute
+    ├── middleware/           # Middleware autentikasi, CORS, & maintenance
+    ├── routes/               # Definisi endpoint API Express
+    ├── services/             # Layanan notifikasi (Telegram, Webhook)
+    └── uploads/              # Direktori penyimpanan file unggahan
 ```
 
 ---
 
-## API Routes
+## Referensi API Endpoint
 
-| Method | Endpoint               | Deskripsi                |
-| ------ | ---------------------- | ------------------------ |
-| `*`    | `/api/auth/*`          | Autentikasi (login/register) |
-| `*`    | `/api/blog/*`          | Blog management          |
-| `*`    | `/api/portfolio/*`     | Portfolio CRUD           |
-| `*`    | `/api/team/*`          | Team member management   |
-| `*`    | `/api/services/*`      | Services management      |
-| `*`    | `/api/orders/*`        | Order management         |
-| `*`    | `/api/admin/*`         | Admin dashboard          |
-| `*`    | `/api/webhook/*`       | Webhook handlers         |
-| `GET`  | `/api/health`          | Health check             |
-
----
-
-## Troubleshooting
-
-### Database connection failed
-- Pastikan MySQL/MariaDB sudah berjalan
-- Cek konfigurasi `DB_*` di file `.env`
-- Pastikan database sudah dibuat dan schema sudah di-import
-
-### CORS Error di browser
-- Pastikan `FRONTEND_URL` di `.env` sesuai dengan URL frontend yang berjalan
-- Default: `http://localhost:5173`
-
-### Token expired / 401 Unauthorized
-- User akan otomatis redirect ke halaman login
-- Sesuaikan `JWT_EXPIRES_IN` jika durasi terlalu pendek
+| Method | Endpoint | Fungsi | Akses |
+| :--- | :--- | :--- | :--- |
+| POST | `/api/auth/register` | Pendaftaran akun klien baru | Publik |
+| POST | `/api/auth/login` | Otentikasi dan penerbitan token JWT | Publik |
+| GET | `/api/auth/me` | Mengambil profil pengguna aktif | Authenticated |
+| GET | `/api/services` | Mengambil katalog layanan | Publik |
+| GET | `/api/orders` | Mengambil daftar pesanan | Authenticated |
+| POST | `/api/orders` | Membuat pesanan proyek baru | Client / Admin |
+| PUT | `/api/orders/:id/status` | Memperbarui status & rincian pesanan | Admin |
+| GET | `/api/admin/stats` | Mengambil data statistik dashboard | Admin |
+| GET | `/api/health` | Pemeriksaan status kesehatan server | Publik |
 
 ---
 
-## License
+## Penanganan Masalah (Troubleshooting)
 
-Private — All rights reserved.
+### 1. Gagal Terhubung ke Database (ERR_CONNECTION_REFUSED / ER_ACCESS_DENIED)
+- Pastikan service MySQL/MariaDB sudah aktif.
+- Periksa kesesuaian `DB_HOST`, `DB_USER`, `DB_PASSWORD`, dan `DB_NAME` pada file `.env`.
+- Jalankan skrip diagnosa backend: `node server/audit-login.js`.
+
+### 2. Masalah CORS (Cross-Origin Resource Sharing)
+- Pastikan variabel `FRONTEND_URL` di file `.env` sesuai dengan port frontend yang aktif.
+- Pastikan variabel `VITE_API_URL` di file `.env` diisi dengan `/api` agar menggunakan sistem proxy dari Vite.
+
+### 3. Sesi Login Berakhir Secara Tiba-Tiba (401 Unauthorized)
+- Sistem secara otomatis menghapus token yang sudah tidak berlaku dan mengarahkan kembali ke halaman login.
+- Periksa kembali konfigurasi `JWT_SECRET` pada file `.env`.
+
+---
+
+## Lisensi
+
+Hak Cipta Terpelihara - Propscode Studio. Penggunaan dan pendistribusian ulang memerlukan izin tertulis.
