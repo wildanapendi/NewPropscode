@@ -34,8 +34,9 @@ RUN apk add --no-cache nginx supervisor
 
 WORKDIR /app
 
-# Copy built frontend → nginx
+# Copy built frontend → nginx & express fallback
 COPY --from=frontend-build /app/dist /usr/share/nginx/html
+COPY --from=frontend-build /app/dist /app/dist
 
 # Copy server code + production deps
 COPY server/ /app/server/

@@ -49,6 +49,10 @@ app.use("/api", apiProtect);
 // Static files for uploads
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
+// Serve static frontend files from dist
+const distPath = path.join(__dirname, "../dist");
+app.use(express.static(distPath));
+
 // API Routes
 app.use("/api/auth", authRoutes);
 app.use("/api/blog", blogRoutes);
@@ -62,6 +66,16 @@ app.use("/api/settings", settingsRoutes);
 // Health check
 app.get("/api/health", (req, res) => {
     res.json({ status: "ok", timestamp: new Date().toISOString() });
+});
+
+// SPA Fallback — serve index.html for all frontend routes when accessed directly
+app.get("*", (req, res, next) => {
+    if (req.path.startsWith("/api") || req.path.startsWith("/uploads")) {
+        return next();
+    }
+    res.sendFile(path.join(distPath, "index.html"), (err) => {
+        if (err) next();
+    });
 });
 
 // Error handling Jika tidak bisa
