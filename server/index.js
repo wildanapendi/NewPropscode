@@ -68,8 +68,8 @@ app.get("/api/health", (req, res) => {
     res.json({ status: "ok", timestamp: new Date().toISOString() });
 });
 
-// SPA Fallback — serve index.html for all frontend routes when accessed directly
-app.get("*", (req, res, next) => {
+// SPA Fallback — serve index.html for all non-API frontend routes when accessed directly
+app.use((req, res, next) => {
     if (req.path.startsWith("/api") || req.path.startsWith("/uploads")) {
         return next();
     }
